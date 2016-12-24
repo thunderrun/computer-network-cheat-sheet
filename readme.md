@@ -166,8 +166,97 @@ respectively, meaning A wins the race and transmits A1 while B waits. At the end
 
 (d) B1 will be dropped, and B will try the next frame B2.
 
+### 2-5
 
+#### Question
 
+Suppose A, B, and C all make their first carrier sense, as part of an attempt to transmit, while a fourth station D is transmitting. Now with the assumption that Ethernet is p-persistent with p = 0.33 (that is, a waiting station transmits immediately with probability p when the line goes idle and otherwise defers one 51.2-μs slot time and repeats the process). 
+
+Draw a timeline showing one possible sequence of transmissions, attempts, collisions, and exponential backoff choices. Your timeline should meet criterion:  
+ (i) of the previous problem, but in lieu of criterion  
+ (ii) you should show at least one collision and at least one run of four deferrals on an idle line.   
+Again, note that many solutions are possible.  
+
+#### Solution
+
+![](2_5.png)
+
+### 3-1
+
+#### Question
+
+Using the example network given in Figure 3.44, give the virtual circuit tables for all the switches after each of the following connections is established. Assume that the sequence of connections is cumulative; that is, the first connection is still up when the second connection is established, and so on. Also assume that the VCI assignment always picks the lowest unused VCI on each link, starting with 0, and that a VCI is consumed for both directions of a virtual circuit.  
+(a) Host A connects to host C.  
+(b) Host D connects to host B.  
+(c) Host D connects to host I.  
+(d) Host A connects to host B.  
+(e) Host F connects to host J.  
+(f ) Host H connects to host A.  
+
+![](3_1_figure.png)
+
+#### Solution
+
+![](3_1_solution.png)
+
+### 3-3
+
+#### Question
+
+For the network given in Figure 3.45, give the datagram forwarding table for each node. The links are labeled with relative costs; your tables should forward each packet via the lowest-cost path to its destination.
+
+![](3_3_figure.png)
+
+#### Solution
+
+![](3_3_solution.png)
+
+### 3-5
+
+#### Question
+
+Consider the virtual circuit switches in Figure 3.47. Table 3.15 lists, for each switch, what <port, VCI> (or <VCI, interface>) pairs are connected to what other. Connections are bidirectional. List all endpoint-to-endpoint connections.
+
+![](3_5_figure.png)
+![](3_5_figure_2.png)
+
+#### Solution
+
+A -> S1 -> S2 -> S3 -> D  
+A-> B  
+B -> S1 -> S2 -> S3 -> D
+
+### 3-13
+
+#### Question and Solution
+
+Given the extended LAN shown in Figure 3.48, indicate which
+ports are not selected by the spanning tree algorithm.
+
+![](3_13.png)
+
+### 3-15
+
+#### Question
+
+Consider the arrangement of learning bridges shown in Figure 3.49. Assuming all are initially empty, give the forwarding tables for each of the bridges B1 to B4 after the following transmissions:  
+  A sends to C.  
+  C sends to A.  
+  D sends to C.  
+Identify ports with the unique neighbor reached directly from that port; that is, the ports for B1 are to be labeled “A” and “B2.”
+
+![](3_15.png)
+
+#### Solution
+
+A -> B1 -> B2 -> B3 -> C -> B4 -> D  
+C -> B3 -> B2 -> B1 -> A  
+D -> B4 -> B2 -> B3 -> C  
+
+B1:   A ->  A        B2 -> C  
+B2:   B1 -> A       B3 -> C    B4 -> D   
+B3:  B2 -> A, D    C -> C  
+B4:   B2 -> A        D ->D  
 
 
 
