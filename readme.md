@@ -104,8 +104,60 @@ Calculate the latency (from first bit sent to last bit received) for the followi
 (c)  12000 b/ 100 Mbps + 10 μs  + 200 b/ 100 Mbps + 10 μs = 142 μs 
 
 
+### 2-1
 
+#### Question
 
+Show the NRZ,Manchester, and NRZI encodings for the bit pattern shown in Figure 2.36. Assume that the NRZI signal starts out low.
+
+#### Solution
+
+![](encodings.png)
+
+### 2-2
+
+#### Question
+
+Consider an ARQ algorithm running over a 40-km point-to-point fiber link.  
+(a) Compute the one-way propagation delay for this link, assuming that the speed of light is 2×10^8 m/s in the fiber.  
+(b) Suggest a suitable timeout value for the ARQ algorithm to use.  
+(c) Why might it still be possible for the ARQ algorithm to time out and retransmit a frame, given this timeout value?
+
+#### Solution
+
+(a) 40 km / 2×10^8 m/s = 0.2ms  
+(b) 0.2 ~ 0.4 ms  
+(c) Propagation delay is only one source of delays. Packets may experience delays by sitting in queues waiting to be processes and acknowledged. If these delays exceed the safety constant than ARQ will retransmit. 
+
+### 2-3
+
+#### Question
+
+The text suggests that the sliding window protocol can be used to implement flow control. We can imagine doing this by having the receiver delay ACKs, that is, not send the ACK until there is free buffer space to hold the next frame. In doing so, each ACK would simultaneously acknowledge the receipt of the last frame and tell the source that there is now free buffer space available to hold the next frame. Explain why implementing flow control in this way is not a good idea.
+
+#### Solution
+
+If the receiver delays sending an ACK until buffer space is available, it risks delaying so long that the sender times out unnecessarily and retransmits the frame.
+
+## 2-4
+
+#### Question
+
+Let A and B be two stations attempting to transmit on an Ethernet. Each has a steady queue of frames ready to send; A’s frames will be numbered A1, A2, and so on, and B’s similarly. Let T = 51.2 μs be the exponential backoff base unit. Suppose A and B simultaneously attempt to send frame 1, collide, and happen to choose backoff times of 0×T and 1×T,
+respectively, meaning A wins the race and transmits A1 while B waits. At the end of this transmission, B will attempt to retransmit B1 while A will attempt to transmit A2. These first attempts will collide, but now A backs off for either 0×T or 1×T, while B backs off for time equal to one of 0×T, . . . ,3×T.
+
+(a) Give the probability that A wins this second backoff race immediately after this first collision; that is, A’s first choice of backoff time k ×51.2 is less than B’s.
+
+(b) Suppose A wins this second backoff race. A transmits A3, and when it is finished, A and B collide again as A tries to transmit A4 and B tries once more to transmit B1. Give the probability that A wins this third backoff race immediately after the first collision.
+
+(c) Give a reasonable lower bound for the probability that A wins all the remaining backoff races.
+
+(d) What then happens to the frame B1? This scenario is known as the Ethernet capture effect.
+
+#### Solution
+
+(a) 1/2 x 4/3 + 1/2 x 2/4 = 5/8  
+(b) 1/2 x 7/8 + 1/2 x 6/8 = 13/16
 
 
 
