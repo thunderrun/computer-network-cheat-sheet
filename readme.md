@@ -249,7 +249,7 @@ Identify ports with the unique neighbor reached directly from that port; that is
 
 #### Solution
 
-A -> B1 -> B2 -> B3 -> C -> B4 -> D  
+A -> B1 -> B2 -> B3 -> C  B4 -> D  
 C -> B3 -> B2 -> B1 -> A  
 D -> B4 -> B2 -> B3 -> C  
 
