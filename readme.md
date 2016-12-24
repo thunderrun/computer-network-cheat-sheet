@@ -139,7 +139,7 @@ The text suggests that the sliding window protocol can be used to implement flow
 
 If the receiver delays sending an ACK until buffer space is available, it risks delaying so long that the sender times out unnecessarily and retransmits the frame.
 
-## 2-4
+### 2-4
 
 #### Question
 
@@ -157,8 +157,14 @@ respectively, meaning A wins the race and transmits A1 while B waits. At the end
 #### Solution
 
 (a) 1/2 x 4/3 + 1/2 x 2/4 = 5/8  
-(b) 1/2 x 7/8 + 1/2 x 6/8 = 13/16
+(b) 1/2 x 7/8 + 1/2 x 6/8 = 13/16  
+(c) 
 
+![](2_4_c_1.png)
+![](2_4_c_2.png)
+![](2_4_c_3.png)
+
+(d) B1 will be dropped, and B will try the next frame B2.
 
 
 
