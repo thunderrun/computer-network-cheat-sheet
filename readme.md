@@ -17,7 +17,7 @@
 - RIP routing information protocol
 - SMTP simple mail transfer protocol
 - POP post office protocol
-- IMAP inter message access protocol
+- IMAP internet message access protocol
 - FDDI fiber distributed data interface
 - OSPF open shortest path first
 - CIDR classless inter-domain routing
