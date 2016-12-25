@@ -56,7 +56,7 @@ Consider a point-to-point link 4 km in length. At what bandwidth would propagati
 
 #### Solution
 
-B = 100 × 8 b/ (4 km / (2× 10^8m/s) )  =  4 × 107bps = 40 Mbps  
+B = 100 × 8 b/ (4 km / (2× 10^8m/s) )  =  4 × 10^7bps = 40 Mbps  
 For 512 byte, B = 512 × 8 b/ (4 km / (2× 10^8m/s) ) = 204.8 Mbps
 
 ### 1-11
