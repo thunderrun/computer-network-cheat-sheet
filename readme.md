@@ -256,11 +256,166 @@ D -> B4 -> B2 -> B3 -> C
 B1:   A ->  A        B2 -> C  
 B2:   B1 -> A       B3 -> C    B4 -> D   
 B3:  B2 -> A, D    C -> C  
-B4:   B2 -> A        D ->D  
+B4:   B2 -> A        D ->D   
 
 
+### 3-17
+
+#### Question
+
+Consider hosts X, Y, Z,W and learning bridges B1, B2, B3, with initially empty forwarding tables, as in Figure 3.50.  
+(a) Suppose X sends to W. Which bridges learn where X is? Does Y’s network interface see this packet?  
+(b) Suppose Z now sends to X. Which bridges learn where Z is? Does Y’s network interface see this packet?  
+(c) Suppose Y now sends to X. Which bridges learn where Y is? Does Z’s network interface see this packet?  
+(d) Finally, suppose W sends to Y. Which bridges learn where W is? Does Z’s network interface see this packet?  
+
+![](3_17.png)
+
+#### Solution
+
+X -> W :   All bridges learn where X is  
+ Y’s network interface see this packet
+
+Z -> X :    All bridges learn where Z is   
+Y’s network interface does not see this packet
+
+Y -> X :     B1 and B2 learn where Y is  
+Z’s network interface does not see this packet
+
+W -> Y :    B2 and B3 learn where W is   
+Z’s network interface see this packet
+
+### 3-36
+
+#### Question
+
+Suppose a TCP message that contains 1024 bytes of data and 20 bytes of TCP header is passed to IP for delivery across two networks interconnected by a router (i.e., it travels from the source host to a router to the destination host). The first network has an MTU of 1024 bytes; the second has an MTU of 576 bytes. Each network’s MTU gives the size of the largest IP datagram that can be carried in a link-layer frame. Give the sizes and offsets of the sequence of fragments delivered to the network layer at the destination host. Assume all IP headers are 20 bytes.
+
+#### Solution
+
+![](3_36.png)
+
+In first network: MTU is 1024 bytes,  the room of IP data is 1024-20 = 1004 bytes. Since the Offset field counts 8-byte chunks, the fragment contains 1000 bytes (1004 = 8×125+4).  
+The total transmission bytes is 1024+20 =1044. It is fragmented into fragments of size 1000+20=1020 bytes and 44 +20=64 bytes. The offsets are 0 and 125, respectively.
+
+In second network: MTU is 576 bytes, the room of IP data is 576-20 = 556 bytes. Since the Offset field counts 8-byte chunks, the fragment contains 552 bytes (556 = 8×69+4).  
+It is fragmented into fragments of size 552+20=572 bytes, 448+20=468 bytes, and 44 +20=64 bytes. . The offsets are 0, 69, and  125, respectively.
+
+### 3-55
+
+#### Question
+
+Suppose a router has built up the routing table shown in Table 3.18. The router can deliver packets directly over interfaces 0 and 1, or it can forward packets to routers R2, R3, or R4. Describe what the router does with a packet addressed to each of the following destinations:  
+(a) 128.96.39.10  
+(b) 128.96.40.12  
+(c) 128.96.40.151  
+(d) 192.4.153.17  
+(e) 192.4.153.90  
+
+![](3_55.png)
+
+#### Solution
+
+First, the address of destination AND subnet mask, then compare the result with  the subnet number.  
+128.96.39.10 AND 255.255.255.128 equals 128.96.39.0       -> Interface 0  
+       10000000 01100000 00100111 00001010   
+       11111111 11111111 11111111 10000000  
+       10000000 01100000 00100111 00000000 = 128. 96. 39.0  
+
+b)   128.96.40.12 AND 255.255.255.128 equals  128.96.40.0      -> R2  
+
+c)    There is no match -> R4  
+
+d)    192.4.153.17 AND 255.255.255.192 equals 192.4.153.0      -> R3  
+
+e)    There is no match -> R4
+
+### 3-72
+
+#### Question
+
+Table 3.20 is a routing table using CIDR. Address bytes are in hexadecimal. The notation “/12” in C4.50.0.0/12 denotes a netmask with 12 leading 1 bits: FF.F0.0.0. Note that the last three entries cover every address and thus serve in lieu of a default route. State to what next hop the following will be delivered:  
+(a) C4.5E.13.87  
+(b) C4.5E.22.09  
+(c) C3.41.80.02  
+(d) 5E.43.91.12  
+(e) C4.6D.31.2E  
+(f ) C4.6B.31.2E  
+  
+![](3_72.png)
+
+#### Solution
+
+a)  11000100 01011110 00010011 10000111  
+/12=11000100 01010000 00000000 00000000 = C4.50.0.0  
+/20=11000100 01011110 00010000 00000000 = C4.5E.10.0
+
+b)  11000100 01011110 00100010 00001001  
+/12=11000100 01010000 00000000 00000000 = C4.50.0.0  
+
+c) 11000011 01000001 10000000 00000010
+/1=10000000 00000000 00000000 00000000 = 80.0.0.0
+
+d) 01011101 01000011 10010001 00010010
+/2=01000000 00000000 00000000 00000000 = 40.0.0.0
+
+e)  11000100 01101101 00110001 00101110
+/12=11000100 01100000 00000000 00000000 = C4.60.0.0
+
+f)  11000100 01101011 00110001 00101110
+/14=11000100 01101000 00000000 00000000 = C4.68.0.0
+
+a) A,B      b) A      c) E       d) F       e) C      f) D 
 
 
+### 4-20
+
+#### Question
+
+Determine which IPv6 address notations are correct:  
+(a) ::0F53:6382:AB00:67DB:BB27:7332  
+(b) 7803:42F2:::88EC:D4BA:B75D:11CD  
+(c) ::4BA8:95CC::DB97:4EAB  
+(d) 74DC::02BA  
+(e) ::00FF:128.112.92.116  
+
+#### Solution
+
+a,d,e
+
+### 5-10
+
+#### Question
+
+You are hired to design a reliable byte-stream protocol that uses a sliding window (like TCP). This protocol will run over a 1-Gbps network.  
+The RTT of the network is 140 ms, and the maximum segment lifetime is 60 seconds.  
+How many bits would you include in the AdvertisedWindow and SequenceNum fields of your protocol header?
+
+#### Solution
+
+To fully utilize the network, AdvertisedWindow needs to be larger than (Delay × Bandwidth).
+
+(AdvertisedWindow) ≥ (Delay) × (Bandwidth)  
+= 140ms × 1Gbps  
+= 140Mbit  
+= 17.5MB
+
+2^24 = 16,777,216  
+2^25 = 33,554,432  
+
+Therefore, 25 bits are needed for AdvertisedWindow
+
+SequenceNum needs be large enough that the sequence number does not wrap around before any delayed segments have left the network, which is presumed to occur within the maximum segment lifetime.
+
+(ScquenceNum) ≥ (Maximum Segment Lifetime) × (Bandwidth)   
+= 60s x 1Gbps  
+= 60Gbit  
+= 7.5GB
+
+2^32 = 4,294,967,296  
+2^33 = 8,589,934,592
+
+Therefore, 33 bits are needed for SequenceNum.
 
 
 
